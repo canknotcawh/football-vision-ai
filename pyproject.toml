@@ -1,0 +1,47 @@
+[project]
+name = "football-vision-ai"
+version = "0.1.0"
+description = "Football video analytics with YOLO11 (Ultralytics) on NVIDIA GPU"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "opencv-python>=4.10",
+    "matplotlib>=3.9",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+    "scipy>=1.14",
+    "ultralytics>=8.3",
+    "torch>=2.6",
+    "torchvision>=0.21",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29",
+    "jupyterlab>=4.2",
+    "pytest>=8.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+fva-infer = "football_vision.inference.predict:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/football_vision"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# PyTorch CUDA 12.8 wheels (RTX 3050 / Ada Lovelace, sm_86).
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu128" }]
+torchvision = [{ index = "pytorch-cu128" }]

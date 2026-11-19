@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.python-version
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+.dev.vars
+
+# Ultralytics runs & caches
+runs/
+weights/
+*.cache
+datasets/*/
+
+# Model weights (largest artifacts, re-downloadable)
+models/pretrained/*.pt
+models/checkpoints/*.pt
+*.onnx
+*.engine
+*.torchscript
+
+# Data (never commit raw video/images)
+data/raw/*
+data/processed/*
+data/splits/*
+!data/**/.gitkeep
+
+# Reports / logs
+reports/*.log
+reports/figures/*.png
+wandb/
+*.mp4
+*.avi
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
